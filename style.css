@@ -96,7 +96,7 @@ body {
   /* 2. The Magic Trick: This pushes the box all the way to the right */
   margin-left: auto;
 
-  height: 80px;
+  height: 55px;
   border-radius: 30px;
 
   /* Optional: If you want content inside it centered */
