@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f1115;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e2229;
+
+  /* I increased this slightly to give the logo room to breathe */
+  height: 60px;
+
+  /* Remove top/bottom padding here, let flexbox handle the centering */
+  padding: 0 20px;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.logo-img {
+  /* CRITICAL CHANGE: */
+  /* Don't set a fixed width. Set a max-height relative to the header. */
+  height: auto;
+  width: auto;
+
+  /* This ensures the logo never exceeds the header height */
+  max-height: 95%;
+
+  /* Remove padding from the image itself so it centers perfectly mathematically */
+  padding: 0;
+
+  /* Invalid property for images, so I removed align-items here */
+}
+
+/* 1. The Main Wrapper */
+#dashboard-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+
+  margin-top: 50px; /* 50px for the header + 10px for a nice gap */
+}
+
+/* 2. The Two Top Boxes */
+#left-chart-wrapper,
+#right-chart-wrapper {
+  flex: 1 1 calc(50% - 10px); /* Grow and take up half the width */
+  height: 300px; /* Fixed height for now */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+}
+
+.chart-card {
+  transition:
+    transform 0.5s ease,
+    box-shadow 0.5s ease;
+}
+
+/* 3. The One Big Bottom Box */
+#main-chart-wrapper {
+  flex: 1 1 100%; /* Force this to take up the full 100% width */
+  height: 500px; /* Make the "Hero" chart taller */
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+}
+
+#reachout-chart-wrapper {
+  /* flex: 1 1; */
+  width: 600px; /* Adjust this to whatever size you need */
+
+  /* 2. The Magic Trick: This pushes the box all the way to the right */
+  margin-left: auto;
+
+  height: 80px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+
+  /* Optional: If you want content inside it centered */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  /* justify-self: flex */
+}
+
+.chart-card:hover {
+  transform: translateY(-4px);
+}
