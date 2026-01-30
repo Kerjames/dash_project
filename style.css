@@ -1,3 +1,6 @@
+/* =========================================
+   1. GLOBAL RESET & TYPOGRAPHY
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
@@ -10,107 +13,175 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
 }
 
+/* =========================================
+   2. HEADER & DROPDOWN (Updated)
+   ========================================= */
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1e2229;
-
-  /* I increased this slightly to give the logo room to breathe */
-  height: 60px;
-
-  /* Remove top/bottom padding here, let flexbox handle the centering */
-  padding: 0 20px;
-
   position: fixed;
   top: 0;
   width: 100%;
+  height: 60px;
   z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center; /* This keeps the logo centered relative to the page */
 
   background-color: #0b0e14;
   border-bottom: 1px solid #242c3d;
+  padding: 0 40px;
 }
 
+/* Center the logo perfectly */
 .logo-img {
-  /* CRITICAL CHANGE: */
-  /* Don't set a fixed width. Set a max-height relative to the header. */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   height: auto;
   width: auto;
-
-  /* This ensures the logo never exceeds the header height */
-  max-height: 95%;
-
-  /* Remove padding from the image itself so it centers perfectly mathematically */
-  padding: 0;
-
-  /* Invalid property for images, so I removed align-items here */
+  max-height: 95%; /* Ensures logo fits inside header */
 }
 
-/* 1. The Main Wrapper */
+/* --- New Dropdown Section --- */
+
+/* Wrapper to hold Icon + Dropdown together */
+.action-menu {
+  position: absolute;
+  right: 40px; /* Positions everything on the far right */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* The Icon Trigger */
+#menu-icon {
+  color: #ffcc00;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 10px; /* Make it easier to click */
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+#menu-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px #ffcc00);
+}
+
+/* The Dropdown Box (Hidden by default) */
+.dropdown-box {
+  display: none; /* Hidden until JS adds .active */
+
+  position: absolute;
+  top: 50px; /* Pushes it below the icon */
+  right: 0; /* Aligns to the right edge of the wrapper */
+
+  width: 220px;
+  background-color: #141a26;
+  border: 1px solid #242c3d;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.dropdown-box.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Buttons inside the dropdown */
+.dropdown-item {
+  width: 100%;
+  padding: 15px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  text-align: left;
+  /* font-family: "Plus Jakarta Sans", sans-serif; */
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid rgba(36, 44, 61, 0.5); /* Subtle divider */
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 204, 0, 0.1);
+  color: #ffcc00;
+}
+
+/* Simple animation for the menu appearing */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   3. DASHBOARD LAYOUT
+   ========================================= */
 #dashboard-container {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding-right: 100px;
-  padding-left: 100px;
-  padding-top: 40px;
+  padding: 40px 100px; /* Shortened padding syntax */
   width: 100%;
-  box-sizing: border-box;
 
-  margin-top: 50px; /* 50px for the header + 10px for a nice gap */
+  margin-top: 50px; /* Space for fixed header */
 }
 
-/* 2. The Two Top Boxes */
+/* Top Two Boxes */
 #left-chart-wrapper,
 #right-chart-wrapper {
-  flex: 1 1 calc(50% - 10px); /* Grow and take up half the width */
-  height: 300px; /* Fixed height for now */
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  flex: 1 1 calc(50% - 10px);
+  height: 300px;
   border-radius: 30px;
 }
 
-.chart-card {
-  transition:
-    transform 0.5s ease,
-    box-shadow 0.5s ease;
-
-  background-color: #141a26 !important; /* The dark blue surface */
-  border: 1px solid #242c3d !important; /* Low-contrast border */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-/* 3. The One Big Bottom Box */
+/* Hero Chart */
 #main-chart-wrapper {
-  flex: 1 1 100%; /* Force this to take up the full 100% width */
-  height: 500px; /* Make the "Hero" chart taller */
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  flex: 1 1 100%;
+  height: 500px;
   border-radius: 30px;
 }
 
+/* Reach Out Footer */
 #reachout-chart-wrapper {
-  /* flex: 1 1; */
-  width: 600px; /* Adjust this to whatever size you need */
-
-  /* 2. The Magic Trick: This pushes the box all the way to the right */
-  margin-left: auto;
-
+  width: 600px;
   height: 55px;
   border-radius: 30px;
+  margin-left: auto; /* Pushes box to the right */
+  margin-bottom: 50px;
 
-  /* Optional: If you want content inside it centered */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 50px;
-  /* justify-self: flex */
+  gap: 8px;
+
   color: #94a3b8;
   font-size: 0.9rem;
+
+  /* Glassmorphism Effect */
+  background: rgba(20, 26, 38, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid #242c3d;
 }
 
 #reachout-chart-wrapper a {
-  color: #ffcc00; /* Logo yellow for the email link */
+  color: #ffcc00;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s;
@@ -120,9 +191,22 @@ body {
   border-bottom: 1px solid #ffcc00;
 }
 
+/* =========================================
+   4. CARD STYLING & EFFECTS
+   ========================================= */
+.chart-card {
+  background-color: #141a26;
+  border: 1px solid #242c3d;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
 .chart-card:hover {
   transform: translateY(-4px);
-  border-color: #0b193c !important;
+  border-color: #0f1c3a !important;
 
   /* The Glow Effect */
   box-shadow:
