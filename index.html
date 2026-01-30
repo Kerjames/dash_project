@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/c6a70b31eb.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="style.css" />
 
     <!-- <script type="module" src="./main.js"></script> -->
@@ -12,6 +18,19 @@
   <body>
     <div class="header">
       <img src="./botcom.png" alt="botcom" class="logo-img" />
+
+      <div class="action-menu">
+        <i id="menu-icon" class="fa-solid fa-upload"></i>
+
+        <div id="dropdown-menu" class="dropdown-box">
+          <button class="dropdown-item">
+            <i class="fa-solid fa-download"></i> Download Template
+          </button>
+          <button class="dropdown-item">
+            <i class="fa-solid fa-file-arrow-up"></i> Upload File
+          </button>
+        </div>
+      </div>
     </div>
 
     <main id="dashboard-container">
@@ -20,7 +39,7 @@
 
       <div id="main-chart-wrapper" class="chart-card"></div>
       <div id="reachout-chart-wrapper" class="chart-card">
-        If you see any bugs please reach out to:
+        For any suggested improvements please reach out to:
         <a href="mailto:kjgonultas@gmail.com"> kjgonultas@gmail.com</a>
       </div>
     </main>
