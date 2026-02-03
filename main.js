@@ -21,3 +21,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Logo click event to redirect to a specific URL
+const logo = document.getElementsByClassName("logo-img");
+
+logo[0].style.cursor = "pointer";
+logo[0].title = "Tiklasana guzelim!";
+
+logo[0].addEventListener("click", () => {
+  window.location.href = "https://www.youtube.com/watch?v=Ooru55prkC0";
+});
+
+logo[0].addEventListener("mouseenter", () => {
+  logo[0].style.opacity = "0.7";
+  logo[0].style.transition = "opacity 0.3s";
+});
+
+logo[0].addEventListener("mouseleave", () => {
+  logo[0].style.opacity = "1";
+  logo[0].style.transition = "opacity 0.3s";
+});
+
+// Dropdown menu properties
+// Upload file
+const uploadButton = document.getElementById("upload-button");
+const fileinput = document.getElementById("file-input");
+
+uploadButton.addEventListener("click", () => {
+  console.log("Button clicked!"); // If this shows up, the button is fine.
+});
