@@ -73,6 +73,7 @@ function initECharts() {
         itemStyle: { color: "#ffcc00" },
       },
     ],
+
     backgroundColor: "transparent",
   };
 
